@@ -9,7 +9,7 @@ import re
 import os
 import json
 
-VERSION = '1.4.1'
+VERSION = '1.5.1'
 
 # 默认配置
 template = 'workno [circle] title (cv)'  # 默认命名模板
@@ -21,7 +21,7 @@ R_COOKIE = {'adultchecked': '1'}
 
 # re.compile()返回一个匹配对象
 # ensure path name is exactly RJ###### or RT######
-pattern = re.compile("^R[EJT]\d{6}$")
+pattern = re.compile("^R[EJT]\d+$")
 # filter to substitute illegal filenanme characters to " "
 filter = re.compile('[\\\/:"*?<>|]+')
 
@@ -64,9 +64,16 @@ def get_r_code(originalName, matchCode):
     if index_list == -1:
         return ""
     for i in range(0, len(index_list)):
-        r_idx = index_list[i]
-        r_code = originalName[r_idx:(r_idx) + 8]
-        pattern = re.compile("^" + matchCode + "\d{6}$")
+        r_code = matchCode
+
+        for i in originalName[len(matchCode):]:
+            if i.isdigit():
+                r_code += str(i)
+            else:
+                break
+
+        pattern = re.compile("^" + matchCode + "\d+")
+        
         if pattern.match(r_code):
             return r_code.upper()
     return ""
