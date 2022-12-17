@@ -1,0 +1,21 @@
+{
+	"replace_rules":
+	[
+	   {
+		   "type": "rj",
+		   "from": "",
+		   "to": "workno[work_age][circle title] (CV. cv) "
+	   },
+	   {
+		   "type": "bj",
+		   "from": "",
+		   "to": "[workno][circle (author)] title "
+	   },
+	   {
+		   "type": "vj",
+		   "from": "",
+		   "to": "[workno][circle] title "
+	   }
+   ],
+   "proxy": "http://127.0.0.1:7890"
+} 
