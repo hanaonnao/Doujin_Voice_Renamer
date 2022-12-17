@@ -199,7 +199,8 @@ def nameChange():
                 elif code_len == 8:
                     code = re.findall(pattern6, file.upper())[0]
                 else:
-                    break
+                    code = re.findall(pattern, file.upper())[0]
+
                 # 如果沒能提取到code
                 if not code:
                     continue  # 跳過該資料夾/檔案
